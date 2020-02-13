@@ -14,5 +14,5 @@ class Block {
         std::string privateData;
         std::string privateHash;
         time_t privateTime;
-        std::string CalculateHash() const;
+        std::string CalculateHash() const;  // const ensures the method cannot change any of the variables in the block class
 };
