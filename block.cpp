@@ -26,3 +26,10 @@ void Block::MineBlock(uint32_t difficulty) {
 
     std::cout << "Block Mined: " << privateHash << std::endl;
 }
+
+inline std::string Block::CalculateHash() const {
+    std::stringstream strStream;
+    strStream << privateIndex << privateTime << privateData << privateNonce << previousHash;
+
+    return sha256(strStream.str());
+}
