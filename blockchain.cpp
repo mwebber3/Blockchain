@@ -6,9 +6,14 @@ Blockchain::Blockchain() {
     difficulty = 6;
 }
 
-// adding a block to the blockchain 
+// adds a block to the blockchain 
 void Blockchain::AddBlock(Block newBlock) {
     newBlock.previousHash = GetLastBlock().GetHash();
     newBlock.MineBlock(difficulty);
     chain.push_back(newBlock);
+}
+
+// returns the last block from the chain
+Block Blockchain::GetLastBlock() const {
+    return chain.back();
 }
