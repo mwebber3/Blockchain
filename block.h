@@ -3,7 +3,7 @@
 
 class Block {
     public:
-        std::string stringPreviousHash;
+        std::string previousHash;
         Block(uint32_t indexIn, const std::string &dataIn);
         std::string GetHash();
         void MineBlock(uint32_t difficulty);
