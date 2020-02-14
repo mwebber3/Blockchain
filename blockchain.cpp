@@ -8,7 +8,7 @@ Blockchain::Blockchain() {
 
 // adds a block to the blockchain 
 void Blockchain::AddBlock(Block newBlock) {
-    newBlock.previousHash = GetLastBlock().GetHash();
+    newBlock.previousHash = GetLastBlock().publicHash;
     newBlock.MineBlock(difficulty);
     chain.push_back(newBlock);
 }
