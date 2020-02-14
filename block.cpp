@@ -3,17 +3,14 @@
 #include "sha256.h"
 
 Block::Block(uint32_t indexIn, const std::string &dataIn) : privateIndex(indexIn), privateData(dataIn) {
-    privateNonce = -1;
+    privateNonce = 0;
     privateTime = time(nullptr);
-}
-
-std::string Block::GetHash() {
-    return privateHash;
+    publicHash = CalculateHash();
 }
 
 void Block::MineBlock(uint32_t difficulty) {
-    char cstr[difficulty + 1];
-    for (uint32_t i = 0; i < difficulty; i++) {
+    char* cstr = new char[difficulty + 1];
+    for (uint32_t i = 0; i < difficulty; ++i) {
         cstr[i] = '0';
     }
     cstr[difficulty] = '\0';
@@ -21,15 +18,16 @@ void Block::MineBlock(uint32_t difficulty) {
 
     do {
         privateNonce = (privateNonce + 1);
-        privateHash = CalculateHash();
-    } while (privateHash.substr(0, difficulty) != str);
+        publicHash = CalculateHash();
+    } while (publicHash.substr(0, difficulty) != str);
 
-    std::cout << "Block Mined: " << privateHash << std::endl;
+    std::cout << "Block Mined: " << publicHash << std::endl;
+    delete[] cstr;
 }
 
 inline std::string Block::CalculateHash() const {
     std::stringstream strStream;
-    strStream << privateIndex << privateTime << privateData << privateNonce << previousHash;
+    strStream << privateIndex << previousHash << privateTime << privateData << privateNonce;
 
     return sha256(strStream.str());
 }
