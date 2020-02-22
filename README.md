@@ -5,3 +5,6 @@
 
 ## When was Blockchain Invented?
 #### Blockchain was invented by an unknown person or persons using the name Satoshi Nakamoto in 2008. It's initial creation was to serve as the public transaction ledge of the cryptocurrency Bitcoin.
+
+## What Type of Blockchain is this?
+#### This is the beginning of my learning experience with Blockchain. This is based off of a tutorial by Dave Nash (https://davenash.com/2017/10/build-a-blockchain-with-c/).
